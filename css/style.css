@@ -1,0 +1,171 @@
+/* ===================================
+   FONT DI BASE
+   =================================== */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+body { 
+    font-family: 'Open Sans', sans-serif;
+    color: #666;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===================================
+   CONTENITORE PRINCIPALE
+   =================================== */
+
+#pagewrap {
+    width: 1140px;
+    margin: 10px auto;
+    padding: 5px 0;
+}
+
+#content ul,
+#middle ul,
+#sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* ===================================
+   HEADER CON IMMAGINE
+   =================================== */
+
+#site-header {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0;
+    text-align: center;
+    background-color: #A3C7E3;
+    border: 1px solid #ccc;
+}
+
+#site-header img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===================================
+   WRAPPER COLONNE
+   =================================== */
+
+#columns {
+    clear: both;
+    width: 100%;
+}
+
+/* ===================================
+   COLONNE
+   =================================== */
+
+#content,
+#middle,
+#sidebar {
+    float: left;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+}
+
+#content {
+    width: 260px;
+    padding: 5px 10px;
+    background: #f8f8f8;
+}
+
+#middle {
+    width: 600px;
+    padding: 5px 10px;
+    margin: 0 10px 5px 10px;
+}
+
+#sidebar {
+    width: 260px;
+    padding: 5px 10px;
+    background: #f0efef;
+}
+
+/* ===================================
+   TITOLI DENTRO #MIDDLE (VERSIONE PRECISA)
+   =================================== */
+
+#middle h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;            /* Come la versione .it */
+    font-weight: 700;           /* Bold deciso */
+    color: #000000;             /* Nero pieno come l'originale */
+    margin-bottom: 2px;         /* Ridotto per avvicinare il sottotitolo */
+    line-height: 1.1;           /* Interlinea compatta */
+}
+
+#middle h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;            /* Intestazione di sezione ben visibile */
+    font-weight: 700;           /* Bold */
+    color: #333;
+    margin-top: 0;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+/* ===================================
+   EFFETTO ZEBRATO COLONNE LATERALI
+   =================================== */
+
+#content li:nth-child(odd),
+#sidebar li:nth-child(odd) {
+    background-color: #eee;
+}
+
+#content li:nth-child(even),
+#sidebar li:nth-child(even) {
+    background-color: #ddd;
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+
+footer {
+    clear: both;
+    padding: 0 15px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+    #pagewrap {
+        width: 100%;
+        padding: 5px 10px;
+        margin: 10px 0;
+    }
+
+    #columns {
+        width: 100%;
+    }
+
+    #content,
+    #middle,
+    #sidebar {
+        float: none;
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+}
+
+/* ===================================
+   ALTRI STILI MIDDLE
+   =================================== */
+
+#middle p {
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
