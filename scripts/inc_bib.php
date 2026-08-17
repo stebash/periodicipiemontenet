@@ -1,8 +1,10 @@
 <?php
 if (isset($_GET['s'])){@$s= $_GET['s'];}
 else if (isset($_POST['s'])){@$s= $_POST['s'];}
-$result = $pdo->query("SELECT * FROM BIBLIO_EST LEFT JOIN TIPOLOGIA ON BIBLIO_EST.codTipologia=TIPOLOGIA.CODICE WHERE BIBLIO_EST.codice = $s"); 
-$cerca_per = $pdo->query("SELECT * FROM PERSONE AS p JOIN BIBLIO_EST AS b ON p.codice=b.codice WHERE b.codice='$s'"); //cerca i redattori
+$result = $pdo->prepare("SELECT * FROM BIBLIO_EST LEFT JOIN TIPOLOGIA ON BIBLIO_EST.codTipologia=TIPOLOGIA.CODICE WHERE BIBLIO_EST.codice = :s"); 
+$result->execute([':s' => $s]);
+$cerca_per = $pdo->prepare("SELECT * FROM PERSONE AS p JOIN BIBLIO_EST AS b ON p.codice=b.codice WHERE b.codice=:s"); //cerca i redattori
+$cerca_per->execute([':s' => $s]);
 
 if ($result->rowCount() <=0) { 
 echo 'Non ci sono schede con questo numero';

@@ -1,8 +1,10 @@
 <?php
 $s=$_GET['s'];
 
-$result = $pdo->query("SELECT * FROM PERSONA WHERE PID = '$s'"); //cerco le informazioni legate alla persona
-$result3 = $pdo->query("SELECT * FROM IMMAGINI WHERE SCHEDA = '$s'"); //cerco le immagini associate alla scheda
+$result = $pdo->prepare("SELECT * FROM PERSONA WHERE PID = :s"); //cerco le informazioni legate alla persona
+$result->execute([':s' => $s]);
+$result3 = $pdo->prepare("SELECT * FROM IMMAGINI WHERE SCHEDA = :s"); //cerco le immagini associate alla scheda
+$result3->execute([':s' => $s]);
 
 
 while($row = $result3->fetch()) { ?>
