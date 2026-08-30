@@ -1,8 +1,15 @@
 <?php
-$s=$_GET['s'];
+$s = $_GET['s'] ?? $_POST['s'] ?? null;
 
-$result = $pdo->query("SELECT * FROM PERSONA WHERE PID = '$s'"); //cerco le informazioni legate alla persona
-$result3 = $pdo->query("SELECT * FROM IMMAGINI WHERE SCHEDA = '$s'"); //cerco le immagini associate alla scheda
+if ($s === null || !ctype_digit((string)$s)) {
+    echo 'Non ci sono informazioni con questo numero';
+    return;
+}
+
+$result = $pdo->prepare("SELECT * FROM PERSONA WHERE PID = :s"); //cerco le informazioni legate alla persona
+$result->execute([':s' => (int)$s]);
+$result3 = $pdo->prepare("SELECT * FROM IMMAGINI WHERE SCHEDA = :s"); //cerco le immagini associate alla scheda
+$result3->execute([':s' => (int)$s]);
 
 
 while($row = $result3->fetch()) { ?>
