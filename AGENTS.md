@@ -4,12 +4,14 @@
 
 - Preservare il comportamento esistente
 - Preferire modifiche piccole, isolate e verificabili
+- Prima di modificare un file, controllare se la stessa funzionalità esiste già altrove nel progetto o nella cronologia Git
 - Prima analizzare il problema, poi identificare la causa, poi proporre la patch minima
 
 ## Sicurezza
 
 - Usare prepared statements PDO per qualsiasi input utente nelle query SQL
 - Validare i parametri GET/POST in modo coerente con il tipo atteso
+- Non assumere la corrispondenza tra etichette dell'interfaccia e colonne del database: verificare sempre lo schema o il codice storico
 - Non modificare lo schema del database senza autorizzazione esplicita
 - Non modificare credenziali o configurazioni del database
 
