@@ -1,0 +1,55 @@
+
+<img src="https://www.periodicipiemonte.it/img/periodici.png"style="background-color:#A3C7E3;width:100%;"/>
+<p align="right">A cura di Renata Allio</p>
+   <nav class="navbar navbar-expand-md navbar-light bg-white font-weight-bolder">
+   <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+           <li class="nav-item"><a href="home" class="nav-link">Home</a></li>
+		   <li class="nav-item dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Progetto</a>
+				<div class="dropdown-menu">
+					<a href="origini" class="dropdown-item">Origini</a>
+					<a href="collaboratori" class="dropdown-item">Collaboratori</a>
+					<a href="come-partecipare" class="dropdown-item">Come partecipare</a>
+					<a href="notizie-eventi" class="dropdown-item">Notizie ed eventi</a>
+					<a href="https://www.periodicipiemonte.it/admin/login.php" class="dropdown-item">Login</a>
+				</div>
+			</li>
+		<li class="nav-item dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Periodici</a>
+				<div class="dropdown-menu">
+					<a href="storia" class="dropdown-item">Storia</a>
+					<a href="cronologia" class="dropdown-item">Cronologia</a>
+					<!--<a href="testate-in-vita" class="dropdown-item">Testate in vita</a>-->
+					<a href="ricerca-periodico" class="dropdown-item">Ricerca per codice</a>
+					<a href="ricerca-anno-fondazione" class="dropdown-item">Ricerca per anno di fondazione</a>
+				</div>
+		</li>
+		<li class="nav-item dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Bibliografia</a>
+				<div class="dropdown-menu">
+					<a href="monografie" class="dropdown-item">Monografie</a>
+					<a href="opere-collettive" class="dropdown-item">Opere collettive</a>
+					<a href="tesi" class="dropdown-item">Tesi</a>
+					<a href="manoscritti" class="dropdown-item">Manoscritti</a>
+					<a href="opuscoli" class="dropdown-item">Opuscoli</a>
+					<a href="estratti" class="dropdown-item">Estratti</a>
+					<a href="spogli-bibliografici" class="dropdown-item">Spogli bibliografici</a>
+					<a href="citazioni" class="dropdown-item">Citazioni</a>
+					<a href="cataloghi-repertori" class="dropdown-item">Cataloghi, repertori,..</a>
+					<a href="articoli-saggi" class="dropdown-item">Articoli e saggi</a>
+					<a href="ricerca-bibliografie" class="dropdown-item">Ricerca per codice</a>
+				</div>
+		</li>
+		<li class="nav-item dropdown">
+				<a href="biografie" class="nav-link dropdown-toggle" data-toggle="dropdown">Biografie</a>
+				<div class="dropdown-menu">
+					<a href="ricerca-biografie" class="dropdown-item">Ricerca per codice</a>
+				</div>
+	</li>
+	<li class="nav-item"><a href="acronimi" class="nav-link">Acronimi, Abbreviazioni</a></li>
+	<li class="nav-item"><a href="media" class="nav-link">Media</a></li>
+	<li class="nav-item"><a href="contatti" class="nav-link">Contatti</a></li>
+</ul>
+</div>
+</nav>

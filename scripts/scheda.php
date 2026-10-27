@@ -94,9 +94,10 @@ $stmtBib->execute([':id' => $id]);
 
 // Note aggiuntive
 $stmtNoteAgg = $pdo->prepare("
-    SELECT *
-    FROM MEMO2003
+    SELECT TEXT_1, TEXT_2, TEXT_3
+    FROM NOTE
     WHERE SCHEDA = :id
+    ORDER BY id
 ");
 $stmtNoteAgg->execute([':id' => $id]);
 
@@ -149,27 +150,29 @@ if ($sottotitolo !== ''): ?>
         <li><strong>Anno di fondazione:</strong> <?= e($scheda['ANNO_FOND']); ?></li>
         <li><strong>Anno di cessazione:</strong> <?= e($scheda['ANNO_CESS']); ?></li>
 
-        <?php if (!empty($scheda['RIF_PREC'])): ?>
-            <li>
-                <strong>Scheda precedente:</strong>
+        <li>
+            <strong>Scheda precedente:</strong>
+            <?php if (!empty($scheda['RIF_PREC'])): ?>
                 <a href="index.php?c=scheda&amp;s=<?= e($scheda['RIF_PREC']); ?>">
                     <?= e($scheda['RIF_PREC']); ?>
                 </a>
-            </li>
-        <?php endif; ?>
+            <?php endif; ?>
+        </li>
 
-        <?php if (!empty($scheda['RIF_SUCC'])): ?>
-            <li>
-                <strong>Scheda successiva:</strong>
+        <li>
+            <strong>Scheda successiva:</strong>
+            <?php if (!empty($scheda['RIF_SUCC'])): ?>
                 <a href="index.php?c=scheda&amp;s=<?= e($scheda['RIF_SUCC']); ?>">
                     <?= e($scheda['RIF_SUCC']); ?>
                 </a>
-            </li>
-        <?php endif; ?>
+            <?php endif; ?>
+        </li>
 
         <li><strong>Altezza:</strong> <?= e($scheda['ALTEZZA']); ?></li>
         <li><strong>Base:</strong> <?= e($scheda['BASE']); ?></li>
-        <li><strong>Pag. arabe:</strong> <?= e($scheda['PAGINE']); ?></li>
+        <li><strong>Pag. arabe:</strong></li>
+        <li><strong>Da:</strong> <?= e($scheda['PAGINE']); ?></li>
+        <li><strong>A:</strong> <?= e($scheda['PAGINE_A']); ?></li>
         <li><strong>Pag. romane:</strong> <?= e($scheda['PAGINE_ROM']); ?></li>
 
         <li><strong>Genere:</strong> <?= e($scheda['genere_descr']); ?></li>
@@ -202,29 +205,12 @@ if ($sottotitolo !== ''): ?>
         // Se usi ancora variazioni.php lo puoi mantenere qui
         include 'variazioni.php';
         
-    if (
-        !empty($scheda['biblioteca_principale']) ||
-        !empty($scheda['INIPRI']) ||
-        !empty($scheda['FINEPRI'])
-    ): ?>
+    ?>
 
-    <li><h2>Biblioteca principale</h2></li>
-
-    <?php if (!empty($scheda['biblioteca_principale'])): ?>
-        <li><strong>Biblioteca principale:</strong>
-            <?= e($scheda['biblioteca_principale']); ?>
-        </li>
-    <?php endif; ?>
-
-    <?php if (!empty($scheda['INIPRI'])): ?>
-        <li><strong>Inizio:</strong> <?= e($scheda['INIPRI']); ?></li>
-    <?php endif; ?>
-
-    <?php if (!empty($scheda['FINEPRI'])): ?>
-        <li><strong>Fine:</strong> <?= e($scheda['FINEPRI']); ?></li>
-    <?php endif; ?>
-
-<?php endif; ?>
+    <li><h2>Biblioteca principale:</h2></li>
+    <li><strong>Biblioteca principale:</strong> <?= e($scheda['biblioteca_principale']); ?></li>
+    <li><strong>Inizio:</strong> <?= e($scheda['INIPRI']); ?></li>
+    <li><strong>Fine:</strong> <?= e($scheda['FINEPRI']); ?></li>
 
 
 
@@ -235,49 +221,43 @@ if ($sottotitolo !== ''): ?>
         </li>
 
 <li><strong>Archivio:</strong> <?= e($scheda['ARCHIVIO']); ?></li>
-
-<?php if (!empty($scheda['REPERTORIO'])): ?>
-    <li><strong>Repertorio:</strong> <?= e($scheda['REPERTORIO']); ?></li>
-<?php endif; ?>
-
-<?php if (!empty($scheda['FONDOPRIV'])): ?>
-    <li><strong>Fondo privato:</strong> <?= e($scheda['FONDOPRIV']); ?></li>
-<?php endif; ?>
-
-<?php if (!empty($scheda['MICROFILM'])): ?>
-    <li><strong>Microfilm / Scansione:</strong> <?= e($scheda['MICROFILM']); ?></li>
-<?php endif; ?>
-
-<?php if (!empty($scheda['ardig'])): ?>
-    <li><strong>Archivi digitali:</strong> <?= e($scheda['ardig']); ?></li>
-<?php endif; ?>
-
-<?php if (!empty($scheda['cataloghi_online'])): ?>
-    <li><strong>Cataloghi online:</strong> <?= e($scheda['cataloghi_online']); ?></li>
-<?php endif; ?>
+<li><strong>Repertorio:</strong> <?= e($scheda['REPERTORIO']); ?></li>
+<li><strong>Fondo privato:</strong> <?= e($scheda['FONDOPRIV']); ?></li>
+<li><strong>Microfilm / Scansione:</strong> <?= e($scheda['MICROFILM']); ?></li>
+<li><strong>Archivi digitali:</strong> <?= e($scheda['ardig']); ?></li>
+<li><strong>Cataloghi online:</strong> <?= e($scheda['cataloghi_online']); ?></li>
 
 
 <?php if (!empty($scheda['bibliografia'])): ?>
     <li><strong>Bibliografia:</strong> <?= e($scheda['bibliografia']); ?></li>
 <?php endif; ?>
 
-<?php if ($stmtNoteAgg->rowCount() > 0): ?>
+<?php
+$noteAggiuntive = [];
+
+while ($na = $stmtNoteAgg->fetch(PDO::FETCH_ASSOC)) {
+
+    $testo =
+        ($na['TEXT_1'] ?? '') .
+        ($na['TEXT_2'] ?? '') .
+        ($na['TEXT_3'] ?? '');
+
+    $testo = trim($testo);
+
+    if ($testo !== '') {
+        $noteAggiuntive[] = $testo;
+    }
+}
+?>
+
+<?php if (!empty($noteAggiuntive)): ?>
+
     <li><h2>Note aggiuntive</h2></li>
-    <?php while ($na = $stmtNoteAgg->fetch(PDO::FETCH_ASSOC)): ?>
-        <?php
-            $raw = (string)($na['MEMO'] ?? '');
 
-            // 1) Decodifica entità HTML (&#39; &agrave; &quot; ecc.) -> caratteri reali
-            $decoded = html_entity_decode($raw, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    <?php foreach ($noteAggiuntive as $nota): ?>
+        <li><?= nl2br(e($nota)); ?></li>
+    <?php endforeach; ?>
 
-            // 2) Rimuovi eventuali tag HTML (se presenti)
-            $clean = strip_tags($decoded);
-
-            // (opzionale) normalizza spazi
-            $clean = trim(preg_replace('/\s+/', ' ', $clean));
-        ?>
-        <li><?= e($clean); ?></li>
-    <?php endwhile; ?>
 <?php endif; ?>
 
 

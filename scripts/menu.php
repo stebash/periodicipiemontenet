@@ -29,6 +29,11 @@ function attivo($pagina_corrente, $voci) {
                     <a href="index.php?c=come-partecipare">Come partecipare</a>
                 </li>
 
+                <li class="<?= attivo($pagina_corrente, 'notizie-eventi') ?>">
+                    <a href="index.php?c=notizie-eventi">Notizie ed eventi</a>
+                </li>
+
+
                 <!-- LOGIN (link esterno, niente stato active) -->
                 <li>
                     <a href="https://www.periodicipiemonte.net/admin/login.php">Login</a>

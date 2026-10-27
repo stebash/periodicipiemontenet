@@ -73,6 +73,11 @@ require_once ('header.php');
 			</form></li>
 	</ul>
 </div>
+<div><h2>Notizie</h2>
+	<ul>
+		<li><a href="inserisci_notizia.php">Inserisci nuova notizia</a></li>
+	</ul>
+</div>
 <div><h2>Immagini</h2>
 	<ul>
 		<li>

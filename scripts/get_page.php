@@ -17,6 +17,8 @@ switch ($pagina) {
     case 'origini':          $content = 'html/origini.html'; break;
     case 'collaboratori':    $content = 'html/collaboratori.html'; break;
     case 'come-partecipare': $content = 'html/come-partecipare.html'; break;
+    case 'notizie-eventi':   $content = 'scripts/notizie.php'; break;
+    case 'notizia':          $content = 'scripts/notizie.php'; break; // dettaglio di una singola notizia (?id=N)
     
 
     // --- VOCI PERIODICI ---
