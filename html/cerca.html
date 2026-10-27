@@ -1,12 +1,33 @@
 <h1>Cerca</h1>
 <form method="POST" action="index.php?c=cerca"/>
-Seleziona: <select name="cerca">
+Seleziona: <select name="cerca" id="tipo-ricerca">
 	<option value="0">---</option>
 	<option value="per">Periodici</option>
 	<!--<option value="bio">Biografie</option>
 	<option value="bib">Bibliografie</option>-->
 	<option value="persone">Persone</option>
 </select><br />
-Scrivi il titolo: <input type="text" name="stringa"/><br />
+<label for="stringa-ricerca" id="etichetta-ricerca">Scrivi</label> <input type="text" name="stringa" id="stringa-ricerca"/><br />
 <input type="SUBMIT" value="Cerca" />
 </form>
+<script>
+// Aggiorna l'etichetta del campo di ricerca in base all'opzione selezionata
+(function () {
+    var select = document.getElementById('tipo-ricerca');
+    var etichetta = document.getElementById('etichetta-ricerca');
+    if (!select || !etichetta) return;
+
+    var etichette = {
+        'per': 'Scrivi il titolo:',
+        'persone': 'Scrivi il cognome:'
+    };
+
+    function aggiornaEtichetta() {
+        var testo = etichette[select.value];
+        if (testo) etichetta.textContent = testo;
+    }
+
+    select.addEventListener('change', aggiornaEtichetta);
+    aggiornaEtichetta(); // all'apertura della pagina
+})();
+</script>
